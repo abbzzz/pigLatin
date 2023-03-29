@@ -1,0 +1,43 @@
+import java.util.Scanner;
+class pigLatin {
+  
+  public static void main(String[] args) {
+	
+	Scanner in = new Scanner(System.in);
+    
+    System.out.print("What is your message?: "); // Ask the user to type their message
+    String message = in.nextLine(); // input message
+    char[] vowel = {'a', 'e', 'i', 'o', 'u','A', 'E', 'I', 'O', 'U'}; // initializes vowels
+    boolean foundVowel = false; // helps build the endOfWord string
+    String beginningOfWord = ""; // will store the beginning of the words before the first vowel
+    String endOfWord = ""; // will store all letters from the first vowel to the end of the word
+    
+    for (int i = 0; i < message.length(); i++) { // Start message for loop
+      if (message.charAt(i) != ' ') { // If the character isn't a space
+      
+        for (int j = 0; j < vowel.length; j++) { // Start vowel determination for loop
+          if (message.charAt(i) == vowel[j]) {
+		  	foundVowel = true; // if we found a vowel, set to true
+            break; //if we found a vowel, break out of loop
+          }
+        } 
+        if (foundVowel == false) { // we didn't find a vowel and are building the beginningOfWord
+        	beginningOfWord += message.charAt(i); // grab the letter
+        }
+        else { // we found a vowel and are building the endOfWord
+            endOfWord += message.charAt(i); // grab the letter
+        }
+        if (i + 1 == message.length()) { // if we reached the end of the message
+          System.out.print(endOfWord + "-" + beginningOfWord + "ay "); // print out the final word
+        }
+      } 
+      else { // found a space, so print out word
+        System.out.print(endOfWord + "-" + beginningOfWord + "ay ");
+        beginningOfWord = ""; // resent strings for the next word in sentence 
+        endOfWord = ""; // same comment as line 43 
+        foundVowel = false; // reset foundVowel for next word
+      }
+      
+    }     
+  }
+ }
